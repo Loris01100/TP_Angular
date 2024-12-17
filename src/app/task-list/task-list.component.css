@@ -1,0 +1,124 @@
+/* Style général */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Titre de la liste des tâches */
+.title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+/* Liste des tâches */
+.task-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 300px;
+}
+
+.task-item {
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+/* Animation au survol de chaque tâche */
+.task-item:hover {
+  transform: scale(1.02);
+}
+
+/* Tâche terminée */
+.etat {
+  color: green;
+  font-style: italic;
+}
+
+/* Tâche non terminée */
+.non-terminée {
+  color: red;
+}
+
+/* Bouton Supprimer */
+.remove-btn {
+  background-color: transparent;
+  border: none;
+  color: #f44336;
+  cursor: pointer;
+  font-size: 1em;
+  transition: color 0.3s;
+}
+
+/* Changement de couleur pour le bouton Supprimer au survol */
+.remove-btn:hover {
+  color: #d32f2f;
+}
+
+/* Bouton Changer l'état */
+.state-btn {
+  background-color: transparent;
+  border: none;
+  color: #2196f3;
+  cursor: pointer;
+  font-size: 1em;
+  transition: color 0.3s;
+}
+
+/* Changement de couleur pour le bouton Changer l'état au survol */
+.state-btn:hover {
+  color: #1976d2;
+}
+
+/* Zone pour ajouter une nouvelle tâche */
+.add-task {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Champ de saisie pour la nouvelle tâche */
+.task-input {
+  padding: 10px;
+  width: 200px;
+  font-size: 1em;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border 0.3s ease;
+}
+
+.task-input:focus {
+  border-color: #2196f3;
+  outline: none;
+}
+
+/* Bouton Valider */
+.add-btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Changement de couleur pour le bouton Valider au survol */
+.add-btn:hover {
+  background-color: #1976d2;
+}
