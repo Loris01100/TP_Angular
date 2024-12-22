@@ -1,0 +1,56 @@
+.charts {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.charts h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.charts h3 {
+  font-size: 1.5rem;
+  color: #444;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.charts ngx-charts-pie-chart,
+.charts ngx-charts-bar-vertical,
+.charts ngx-charts-bar-horizontal {
+  margin: 20px auto;
+  display: block;
+  max-width: 90%;
+  min-height: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.charts ngx-charts-pie-chart {
+  max-width: 80%;
+}
+
+.charts ngx-charts-bar-vertical,
+.charts ngx-charts-bar-horizontal {
+  max-width: 85%;
+}
+
+@media (max-width: 768px) {
+  .charts h2 {
+    font-size: 1.8rem;
+  }
+
+  .charts h3 {
+    font-size: 1.3rem;
+  }
+
+  .charts ngx-charts-pie-chart,
+  .charts ngx-charts-bar-vertical,
+  .charts ngx-charts-bar-horizontal {
+    max-width: 100%;
+  }
+}

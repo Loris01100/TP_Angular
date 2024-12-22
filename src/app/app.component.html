@@ -6,11 +6,15 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
- <a routerLink="/">home</a>
- <br>
-<a routerLink="/tasks">tache</a>
+<nav>
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a>
+  <a routerLink="/tasks" routerLinkActive="active">Tâches</a>
+  <a routerLink="/statistics" routerLinkActive="active">Statistiques</a>
+</nav>
+
 
 <router-outlet></router-outlet>
+
 <!--
 <style>
   :host {

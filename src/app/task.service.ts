@@ -4,32 +4,64 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class TaskService {
-  constructor() {}
-  tasks = [
-    new cTask('faire le tp', false),
-    new cTask('Penser à la vie', false),
-    new cTask('faire des abdominaux', true),
-    new cTask('prendre de la matière grasse', false),
-  ];
+  private storageKey = 'tasks';
+  tasks: cTask[] = [];
 
-  addTask(name: string): void {
+  constructor() {
+    this.loadTasks();
+  }
+
+  private loadTasks(): void {
+    const storedTasks = localStorage.getItem(this.storageKey);
+    if (storedTasks) {
+      this.tasks = JSON.parse(storedTasks).map(
+        (task: iTask) => new cTask(task.name, task.completed)
+      );
+    }
+  }
+
+  private saveToLocalStorage(): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.tasks));
+  }
+
+  addTask(
+    name: string,
+    dueDate: Date | null,
+    assignedUser: string | null,
+    type: string,
+    priority: 'Haute' | 'Normale' | 'Basse' 
+  ): void {
     if (name.trim() !== '') {
-      const maTache = new cTask(name);
-      this.tasks.push(maTache)
+      const maTache = new cTask(
+        name,
+        false,
+        new Date(),
+        dueDate,
+        assignedUser,
+        type,
+        priority
+      );
+      this.tasks.push(maTache);
+      this.saveToLocalStorage();
     }
   }
 
   removeTask(index: number): void {
-    this.tasks.splice(index, 1);
+    if (index >= 0 && index < this.tasks.length) {
+      this.tasks.splice(index, 1);
+      this.saveToLocalStorage();
+    }
   }
 
   selectTask(index: number): cTask {
     return this.tasks[index];
   }
 
-  updateTask(obj: cTask, index: number): cTask {
-    this.tasks[index].name = obj.name;
-    return obj;
+  updateTask(obj: cTask, index: number): void {
+    if (index >= 0 && index < this.tasks.length) {
+      this.tasks[index] = obj;
+      this.saveToLocalStorage();
+    }
   }
 
   getTasks(): cTask[] {
@@ -37,12 +69,23 @@ export class TaskService {
   }
 
   changeTaskState(index: number): void {
-    this.tasks[index].completed = !this.tasks[index].completed;
+    if (index >= 0 && index < this.tasks.length) {
+      this.tasks[index].completed = !this.tasks[index].completed;
+      this.saveToLocalStorage();
+    }
   }
 }
 
 export class cTask {
-  constructor(public name: String, public completed: Boolean = false) {}
+  constructor(
+    public name: string,
+    public completed: boolean = false,
+    public creationDate: Date = new Date(),
+    public dueDate: Date | null = null,
+    public assignedUser: string | null = null,
+    public type: string = 'Général',
+    public priority: 'Haute' | 'Normale' | 'Basse' = 'Normale'
+  ) {}
 }
 
 export interface iTask {

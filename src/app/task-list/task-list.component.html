@@ -1,33 +1,43 @@
-<h2 class="title">Liste des tâches</h2>
+<div class="container">
+  <div class="task-list-container">
+    <h1 class="title">Liste des Tâches</h1>
+    <ul class="task-list">
+      <li *ngFor="let task of tasks; let i = index" class="task-item">
+        <span [routerLink]="['/task', i]" class="task-name">{{ task.name }}</span>
+        <button class="remove-btn" (click)="removeTask(i)">Supprimer</button>
+        <button class="state-btn" (click)="changeTaskState(i)">
+          {{ task.completed ? "Terminée" : "Non terminée" }}
+        </button>
+       
+        <button class="detail-btn" [routerLink]="['/task-detail', i]">Détail</button>
+      </li>
+    </ul>
+  </div>
 
-<ul class="task-list">
-  <li
-    *ngFor="let task of tasks; let i = index"
-    [ngClass]="{ etat: task.completed, 'non-terminée': !task.completed }"
-    class="task-item"
-  >
-    <span class="task-name">{{ task.name }}</span>
-    <button class="remove-btn" (click)="myTaskService.removeTask(i)">
-      <i class="fas fa-trash-alt"></i> Supprimer
-    </button>
-    <button class="state-btn" (click)="myTaskService.changeTaskState(i)">
-      {{ task.completed ? "Terminée" : "Non terminée" }}
-    </button>
-  </li>
-</ul>
-
-<div class="add-task">
-  <input
-    type="text"
-    [(ngModel)]="newTask"
-    placeholder="Nom de la tâche"
-    class="task-input"
-  />
-  <button class="add-btn" (click)="myTaskService.addTask(newTask)">
-    Valider
-  </button>
+  <div class="add-task">
+    <input
+      type="text"
+      [(ngModel)]="newTaskName"
+      placeholder="Nom de la tâche"
+      class="task-input"
+    />
+    <input type="date" [(ngModel)]="newTaskDueDate" class="task-input" />
+    <input
+      type="text"
+      [(ngModel)]="newTaskAssignedUser"
+      placeholder="Utilisateur assigné"
+      class="task-input"
+    />
+    <select [(ngModel)]="newTaskType" class="task-input">
+      <option value="Général">Général</option>
+      <option value="Important">Important</option>
+      <option value="Urgent">Urgent</option>
+    </select>
+    <select [(ngModel)]="newTaskPriority" class="task-input">
+      <option value="Normal">Normal</option>
+      <option value="Haute">Haute</option>
+      <option value="Basse">Basse</option>
+    </select>
+    <button class="add-btn" (click)="addTask()">Valider</button>
+  </div>
 </div>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-/>

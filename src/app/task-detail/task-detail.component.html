@@ -1,0 +1,26 @@
+<div *ngIf="task">
+  <h1>Détails de la tâche</h1>
+  <div>
+    <strong>Nom :</strong> {{ task.name }}
+  </div>
+  <div>
+    <strong>Date de création :</strong> {{ task.creationDate | date:'dd/MM/yyyy' }}
+  </div>
+  <div>
+    <strong>Date d'échéance :</strong> {{ task.dueDate | date:'dd/MM/yyyy'  }}
+  </div>
+  <div>
+    <strong>Utilisateur assigné :</strong> {{ task.assignedUser }}
+  </div>
+  <div>
+    <strong>Type :</strong> {{ task.type }}
+  </div>
+  <div>
+    <strong>Priorité :</strong> {{ task.priority }}
+  </div>
+  <div>
+    <strong>Statut :</strong> {{ task.completed ? 'Terminée' : 'Non terminée' }}
+  </div>
+  
+  <button (click)="updateTask()">Mettre à jour</button>
+</div>
